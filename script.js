@@ -28,17 +28,19 @@ canvas.addEventListener('mouseup', () => {
 })
 
 // Player
+const playerImg = new Image()
+playerImg.src = 'idle.png'
+
 class Player {
   constructor() {
     this.x = canvas.width
     this.y = canvas.height / 2
-    this.radius = 50
-    this.angle = 0
+    this.radius = 20
     this.frameX = 0
     this.frameY = 0
     this.frame = 0
-    this.spriteWidth = 500
-    this.spriteHeight = 300
+    this.spriteWidth = 50
+    this.spriteHeight = 30
   }
 
   update() {
@@ -67,10 +69,51 @@ class Player {
     ctx.fill()
     ctx.closePath()
     ctx.fillRect(this.x, this.y, this.radius, 10)
+
+    ctx.drawImage(
+      playerImg,
+      this.frameX * this.spriteWidth,
+      this.frameY * this.spriteHeight,
+      this.spriteWidth,
+      this.spriteHeight,
+      this.x,
+      this.y,
+      this.spriteWidth / 4,
+      this.spriteHeight / 4
+    )
+    // console.log(
+    //   playerImg,
+    //   this.frameX * this.spriteWidth,
+    //   this.frameY * this.spriteHeight,
+    //   this.spriteWidth,
+    //   this.spriteHeight,
+    //   this.x,
+    //   this.y,
+    //   this.spriteWidth / 4,
+    //   this.spriteHeight / 4
+    // )
+  }
+}
+
+class Monster {
+  constructor() {
+    this.x = 50
+    this.y = 50
+    this.radius = 30
+  }
+
+  draw() {
+    ctx.fillStyle = 'green'
+    ctx.beginPath()
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.closePath()
+    ctx.fillRect(this.x, this.y, this.radius, 10)
   }
 }
 
 const player = new Player()
+const monster = new Monster()
 
 // Animation Loop
 const animate = () => {
@@ -79,6 +122,11 @@ const animate = () => {
   ctx.fillRect(0, 0, canvas.width, canvas.height)
   player.update()
   player.draw()
+  monster.draw()
+  ctx.font = '30px Georgia'
+  ctx.fillStyle = 'black'
+  ctx.fillText('TewCan Game', 300, 50)
+
   requestAnimationFrame(animate)
 }
 
