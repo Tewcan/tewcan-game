@@ -54,11 +54,12 @@ class Player {
 
   draw() {
     if (mouse.click) {
-      ctx.lineWidth = 0.2
+      ctx.lineWidth = 0.1
       ctx.beginPath()
       ctx.moveTo(this.x, this.y)
       ctx.lineTo(mouse.x, mouse.y)
       ctx.stroke()
+      ctx.fillStyle = 'white'
     }
     ctx.fillStyle = 'red'
     ctx.beginPath()
@@ -74,6 +75,8 @@ const player = new Player()
 // Animation Loop
 const animate = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
+  ctx.fillStyle = 'white'
+  ctx.fillRect(0, 0, canvas.width, canvas.height)
   player.update()
   player.draw()
   requestAnimationFrame(animate)
