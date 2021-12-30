@@ -29,7 +29,7 @@ canvas.addEventListener('mouseup', () => {
 
 // Player
 const playerImg = new Image()
-playerImg.src = 'idle.png'
+playerImg.src = 'assets/sprites/run.png'
 
 class Player {
   constructor() {
@@ -40,7 +40,7 @@ class Player {
     this.frameY = 0
     this.frame = 0
     this.spriteWidth = 50
-    this.spriteHeight = 30
+    this.spriteHeight = 60
   }
 
   update() {
@@ -55,43 +55,32 @@ class Player {
   }
 
   draw() {
-    if (mouse.click) {
-      ctx.lineWidth = 0.2
-      ctx.beginPath()
-      ctx.moveTo(this.x, this.y)
-      ctx.lineTo(mouse.x, mouse.y)
-      ctx.strokeStyle = 'white'
-      ctx.stroke()
-    }
-    ctx.fillStyle = 'red'
-    ctx.beginPath()
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-    ctx.fill()
-    ctx.closePath()
-    ctx.fillRect(this.x, this.y, this.radius, 10)
+    // if (mouse.click) {
+    //   ctx.lineWidth = 0.2
+    //   ctx.beginPath()
+    //   ctx.moveTo(this.x, this.y)
+    //   ctx.lineTo(mouse.x, mouse.y)
+    //   ctx.strokeStyle = 'white'
+    //   ctx.stroke()
+    // }
+    // ctx.fillStyle = 'red'
+    // ctx.beginPath()
+    // ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
+    // ctx.fill()
+    // ctx.closePath()
+    // ctx.fillRect(this.x, this.y, this.radius, 10)
 
     ctx.drawImage(
       playerImg,
-      this.frameX * this.spriteWidth,
-      this.frameY * this.spriteHeight,
+      50,
+      10,
       this.spriteWidth,
       this.spriteHeight,
-      this.x,
-      this.y,
-      this.spriteWidth / 4,
-      this.spriteHeight / 4
+      this.x - 15,
+      this.y - 30,
+      this.spriteWidth,
+      this.spriteHeight
     )
-    // console.log(
-    //   playerImg,
-    //   this.frameX * this.spriteWidth,
-    //   this.frameY * this.spriteHeight,
-    //   this.spriteWidth,
-    //   this.spriteHeight,
-    //   this.x,
-    //   this.y,
-    //   this.spriteWidth / 4,
-    //   this.spriteHeight / 4
-    // )
   }
 }
 
