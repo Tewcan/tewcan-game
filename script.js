@@ -8,6 +8,27 @@ let score = 0
 let gameFrame = 0
 
 // Keyboard Functionality
+document.addEventListener('keydown', (e) => {
+  switch (e.key) {
+    case 'ArrowUp':
+      console.log('up key')
+      player.frameY = 0
+      break
+    case 'ArrowRight':
+      console.log('right key')
+      player.frameY = 1
+      break
+    case 'ArrowDown':
+      console.log('down key')
+      player.frameY = 2
+      break
+    case 'ArrowLeft':
+      console.log('left key')
+      player.frameY = 3
+      break
+
+  }
+})
 
 // Player
 const playerImg = new Image()
@@ -15,12 +36,12 @@ playerImg.src = 'assets/sprites/walk-animation.png'
 
 class Player {
   constructor() {
-    this.x = canvas.width
-    this.y = canvas.height / 2
+    this.x = 200
+    this.y = 200
     this.radius = 20
     this.frameX = 0
     this.frameY = 0
-    this.frame = 0
+    this.gameFrame = 0
     this.spriteWidth = 50
     this.spriteHeight = 65
   }
@@ -32,8 +53,8 @@ class Player {
       this.spriteHeight * this.frameY,
       this.spriteWidth,
       this.spriteHeight,
-      this.x - 15,
-      this.y - 30,
+      this.x,
+      this.y,
       this.spriteWidth,
       this.spriteHeight
     )
