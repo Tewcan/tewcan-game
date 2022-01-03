@@ -6,26 +6,8 @@ canvas.height = 500
 
 let score = 0
 let gameFrame = 0
-ctx.fillStyle = 'white'
-ctx.fillRect(0, 0, canvas.width, canvas.height)
-ctx.font = '50px Georgia'
 
-// Mouse Functionality
-let canvasPosition = canvas.getBoundingClientRect()
-const mouse = {
-  x: canvas.width / 2,
-  y: canvas.height / 2,
-  click: false
-}
-canvas.addEventListener('mousedown', (event) => {
-  mouse.click = true
-  mouse.x = event.x - canvasPosition.left
-  mouse.y = event.y - canvasPosition.top
-})
-
-canvas.addEventListener('mouseup', () => {
-  mouse.click = false
-})
+// Keyboard Functionality
 
 // Player
 const playerImg = new Image()
@@ -39,26 +21,15 @@ class Player {
     this.frameX = 0
     this.frameY = 0
     this.frame = 0
-    this.spriteWidth = 40
-    this.spriteHeight = 60
-  }
-
-  update() {
-    const dx = this.x - mouse.x
-    const dy = this.y - mouse.y
-    if (mouse.x != this.x) {
-      this.x -= dx / 30
-    }
-    if (mouse.y != this.y) {
-      this.y -= dy / 30
-    }
+    this.spriteWidth = 50
+    this.spriteHeight = 65
   }
 
   draw() {
     ctx.drawImage(
       playerImg,
-      10,
-      10,
+      this.spriteWidth * this.frameX,
+      this.spriteHeight * this.frameY,
       this.spriteWidth,
       this.spriteHeight,
       this.x - 15,
@@ -94,7 +65,7 @@ const animate = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   ctx.fillStyle = 'rgb(30,30,30)'
   ctx.fillRect(0, 0, canvas.width, canvas.height)
-  player.update()
+  // player.update()
   player.draw()
   monster.draw()
   ctx.font = '30px Georgia'
