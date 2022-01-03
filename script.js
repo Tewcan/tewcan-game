@@ -29,7 +29,7 @@ canvas.addEventListener('mouseup', () => {
 
 // Player
 const playerImg = new Image()
-playerImg.src = 'assets/sprites/run.png'
+playerImg.src = 'assets/sprites/walk-animation.png'
 
 class Player {
   constructor() {
@@ -39,7 +39,7 @@ class Player {
     this.frameX = 0
     this.frameY = 0
     this.frame = 0
-    this.spriteWidth = 50
+    this.spriteWidth = 40
     this.spriteHeight = 60
   }
 
@@ -55,24 +55,9 @@ class Player {
   }
 
   draw() {
-    // if (mouse.click) {
-    //   ctx.lineWidth = 0.2
-    //   ctx.beginPath()
-    //   ctx.moveTo(this.x, this.y)
-    //   ctx.lineTo(mouse.x, mouse.y)
-    //   ctx.strokeStyle = 'white'
-    //   ctx.stroke()
-    // }
-    // ctx.fillStyle = 'red'
-    // ctx.beginPath()
-    // ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-    // ctx.fill()
-    // ctx.closePath()
-    // ctx.fillRect(this.x, this.y, this.radius, 10)
-
     ctx.drawImage(
       playerImg,
-      50,
+      10,
       10,
       this.spriteWidth,
       this.spriteHeight,
@@ -107,7 +92,7 @@ const monster = new Monster()
 // Animation Loop
 const animate = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
-  ctx.fillStyle = 'white'
+  ctx.fillStyle = 'rgb(30,30,30)'
   ctx.fillRect(0, 0, canvas.width, canvas.height)
   player.update()
   player.draw()
