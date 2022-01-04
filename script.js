@@ -9,22 +9,24 @@ let gameFrame = 0
 
 // Keyboard Functionality
 document.addEventListener('keydown', (e) => {
+  player.frameX > 1 ? player.frameX = 0 : player.frameX += 1
+
   switch (e.key) {
     case 'ArrowUp':
-      console.log('up key')
       player.frameY = 0
+      player.y -= 15
       break
     case 'ArrowRight':
-      console.log('right key')
       player.frameY = 1
+      player.x += 15
       break
     case 'ArrowDown':
-      console.log('down key')
       player.frameY = 2
+      player.y += 15
       break
     case 'ArrowLeft':
-      console.log('left key')
       player.frameY = 3
+      player.x -= 15
       break
 
   }
