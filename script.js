@@ -11,32 +11,29 @@ document.addEventListener('keydown', (e) => {
   switch (e.key) {
     case 'ArrowUp':
       player.frameY = 0
-      if (player.y > 0) {player.y -= 15}
+      if (player.y > 0) player.y -= 15
       break
     case 'ArrowRight':
       player.frameY = 1
-      if (player.x + player.spriteWidth < canvas.width) {player.x += 15}
+      if (player.x + player.spriteWidth < canvas.width) player.x += 15
       break
     case 'ArrowDown':
       player.frameY = 2
-      if (player.y + player.spriteHeight < canvas.height) {player.y += 15}
+      if (player.y + player.spriteHeight < canvas.height) player.y += 15
       break
     case 'ArrowLeft':
       player.frameY = 3
-      if (player.x > 0) {player.x -= 15}
+      if (player.x > 0) player.x -= 15
       break
   }
 })
 
 // Player
-const playerImg = new Image()
-playerImg.src = 'assets/sprites/walk-animation.png'
-
 class Player {
   constructor() {
     this.x = 200
     this.y = 200
-    this.radius = 20
+    this.radius = 25
     this.frameX = 0
     this.frameY = 0
     this.spriteWidth = 50
@@ -62,18 +59,36 @@ class Monster {
   constructor() {
     this.x = 50
     this.y = 50
-    this.radius = 30
+    this.radius = 25
+    this.spriteWidth = 70
+    this.spriteHeight = 70
+    this.frameX = 0
+    this.frameCount = 0
   }
 
   draw() {
-    ctx.fillStyle = 'green'
-    ctx.beginPath()
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-    ctx.fill()
-    ctx.closePath()
-    ctx.fillRect(this.x, this.y, this.radius, 10)
+    ctx.drawImage(
+      monsterImg,
+      32 * this.frameX,
+      0,
+      32,
+      50,
+      this.x,
+      this.y,
+      this.spriteWidth,
+      this.spriteHeight
+    )
+
+    this.frameCount += 1
+    if (this.frameCount % 10 == 0) this.frameX += 1
+    if (this.frameX == 4) this.frameX = 0
   }
 }
+
+const playerImg = new Image()
+playerImg.src = 'assets/sprites/walk-animation.png'
+const monsterImg = new Image()
+monsterImg.src = 'assets/sprites/demon.png'
 
 const player = new Player()
 const monster = new Monster()
