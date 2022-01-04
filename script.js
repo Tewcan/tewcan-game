@@ -10,25 +10,24 @@ let gameFrame = 0
 // Keyboard Functionality
 document.addEventListener('keydown', (e) => {
   player.frameX > 1 ? player.frameX = 0 : player.frameX += 1
-
+  console.log(player.y, canvas.height);
   switch (e.key) {
     case 'ArrowUp':
       player.frameY = 0
-      player.y -= 15
+      if (player.y > 0) {player.y -= 15}
       break
     case 'ArrowRight':
       player.frameY = 1
-      player.x += 15
+      if (player.x + player.spriteWidth < canvas.width) {player.x += 15}
       break
     case 'ArrowDown':
       player.frameY = 2
-      player.y += 15
+      if (player.y + player.spriteHeight < canvas.height) {player.y += 15}
       break
     case 'ArrowLeft':
       player.frameY = 3
-      player.x -= 15
+      if (player.x > 0) {player.x -= 15}
       break
-
   }
 })
 
@@ -88,11 +87,10 @@ const animate = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   ctx.fillStyle = 'rgb(30,30,30)'
   ctx.fillRect(0, 0, canvas.width, canvas.height)
-  // player.update()
   player.draw()
   monster.draw()
   ctx.font = '30px Georgia'
-  ctx.fillStyle = 'black'
+  ctx.fillStyle = 'white'
   ctx.fillText('TewCan Game', 300, 50)
 
   requestAnimationFrame(animate)
