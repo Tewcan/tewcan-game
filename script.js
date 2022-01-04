@@ -4,13 +4,10 @@ const ctx = canvas.getContext('2d')
 canvas.width = 800
 canvas.height = 500
 
-let score = 0
-let gameFrame = 0
-
 // Keyboard Functionality
 document.addEventListener('keydown', (e) => {
   player.frameX > 1 ? player.frameX = 0 : player.frameX += 1
-  console.log(player.y, canvas.height);
+
   switch (e.key) {
     case 'ArrowUp':
       player.frameY = 0
@@ -42,7 +39,6 @@ class Player {
     this.radius = 20
     this.frameX = 0
     this.frameY = 0
-    this.gameFrame = 0
     this.spriteWidth = 50
     this.spriteHeight = 65
   }
