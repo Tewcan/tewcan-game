@@ -6,24 +6,24 @@ canvas.height = 500
 
 // Keyboard Functionality
 document.addEventListener('keydown', (e) => {
-  player.frameX > 1 ? player.frameX = 0 : player.frameX += 1
+  player.frameX > 3 ? player.frameX = 0 : player.frameX += 1
 
   switch (e.key) {
     case 'ArrowUp':
       player.frameY = 0
-      if (player.y > 0) player.y -= 15
+      if (player.y > 0) player.y -= 30
       break
     case 'ArrowRight':
       player.frameY = 1
-      if (player.x + player.spriteWidth < canvas.width) player.x += 15
+      if (player.x + player.spriteWidth < canvas.width) player.x += 30
       break
     case 'ArrowDown':
       player.frameY = 2
-      if (player.y + player.spriteHeight < canvas.height) player.y += 15
+      if (player.y + player.spriteHeight < canvas.height) player.y += 30
       break
     case 'ArrowLeft':
       player.frameY = 3
-      if (player.x > 0) player.x -= 15
+      if (player.x > 0) player.x -= 30
       break
   }
 })
@@ -36,8 +36,8 @@ class Player {
     this.radius = 25
     this.frameX = 0
     this.frameY = 0
-    this.spriteWidth = 50
-    this.spriteHeight = 65
+    this.spriteWidth = 72
+    this.spriteHeight = 72
   }
 
   draw() {
@@ -49,8 +49,8 @@ class Player {
       this.spriteHeight,
       this.x,
       this.y,
-      this.spriteWidth,
-      this.spriteHeight
+      150,
+      150
     )
   }
 }
@@ -86,7 +86,7 @@ class Monster {
 }
 
 const playerImg = new Image()
-playerImg.src = 'assets/sprites/walk-animation.png'
+playerImg.src = 'assets/sprites/walk.png'
 const monsterImg = new Image()
 monsterImg.src = 'assets/sprites/demon.png'
 
@@ -98,8 +98,8 @@ const animate = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   ctx.fillStyle = 'rgb(30,30,30)'
   ctx.fillRect(0, 0, canvas.width, canvas.height)
-  player.draw()
   monster.draw()
+  player.draw()
   ctx.font = '30px Georgia'
   ctx.fillStyle = 'white'
   ctx.fillText('TewCan Game', 300, 50)
