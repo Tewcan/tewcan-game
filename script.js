@@ -25,6 +25,10 @@ document.addEventListener('keydown', (e) => {
       player.frameY = 3
       if (player.x > 0) player.x -= 30
       break
+    case 'a':
+      player.attacking = true
+      player.frameX = 0
+      break
   }
 })
 
@@ -38,20 +42,45 @@ class Player {
     this.frameY = 0
     this.spriteWidth = 72
     this.spriteHeight = 72
+    this.frameCount = 0
+    this.attacking = false
   }
 
   draw() {
-    ctx.drawImage(
-      playerImg,
-      this.spriteWidth * this.frameX,
-      this.spriteHeight * this.frameY,
-      this.spriteWidth,
-      this.spriteHeight,
-      this.x,
-      this.y,
-      150,
-      150
-    )
+    if (this.attacking == false) {
+      ctx.drawImage(
+        playerImg,
+        this.spriteWidth * this.frameX,
+        this.spriteHeight * this.frameY,
+        this.spriteWidth,
+        this.spriteHeight,
+        this.x,
+        this.y,
+        150,
+        150
+      )
+    } else {
+      ctx.drawImage(
+        attackImg,
+        this.spriteWidth * this.frameX,
+        this.spriteHeight * this.frameY,
+        this.spriteWidth,
+        this.spriteHeight,
+        this.x,
+        this.y,
+        150,
+        150
+      )
+      this.frameCount += 1
+      if (this.frameCount % 5 == 0) this.frameX += 1
+      if (this.frameX == 4) {
+        this.frameX = 0
+        this.attacking = false
+
+      }
+
+    }
+
   }
 }
 
@@ -87,6 +116,8 @@ class Monster {
 
 const playerImg = new Image()
 playerImg.src = 'assets/sprites/walk.png'
+const attackImg = new Image()
+attackImg.src = 'assets/sprites/attack.png'
 const monsterImg = new Image()
 monsterImg.src = 'assets/sprites/demon.png'
 
@@ -98,11 +129,11 @@ const animate = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   ctx.fillStyle = 'rgb(30,30,30)'
   ctx.fillRect(0, 0, canvas.width, canvas.height)
-  monster.draw()
-  player.draw()
   ctx.font = '30px Georgia'
   ctx.fillStyle = 'white'
   ctx.fillText('TewCan Game', 300, 50)
+  monster.draw()
+  player.draw()
 
   requestAnimationFrame(animate)
 }
