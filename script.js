@@ -6,6 +6,7 @@ canvas.height = 500
 
 // Keyboard Functionality
 document.addEventListener('keydown', (e) => {
+  if (player.attacking == true) return
   player.frameX > 3 ? player.frameX = 0 : player.frameX += 1
 
   switch (e.key) {
