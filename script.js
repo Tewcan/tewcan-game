@@ -87,8 +87,8 @@ class Player {
 
 class Monster {
   constructor() {
-    this.x = 50
-    this.y = 50
+    this.x = 150
+    this.y = 150
     this.radius = 25
     this.spriteWidth = 70
     this.spriteHeight = 70
@@ -128,8 +128,10 @@ const monster = new Monster()
 // Animation Loop
 const animate = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
-  ctx.fillStyle = 'rgb(30,30,30)'
+  ctx.fillStyle = 'rgb(50, 50, 50)'
   ctx.fillRect(0, 0, canvas.width, canvas.height)
+  ctx.fillStyle = 'rgb(10, 10, 10)'
+  ctx.fillRect(0, 0, canvas.width, 75)
   ctx.font = '30px Georgia'
   ctx.fillStyle = 'white'
   ctx.fillText('TewCan Game', 300, 50)
@@ -140,3 +142,8 @@ const animate = () => {
 }
 
 animate()
+
+canvas.addEventListener('click', (e) => {
+
+  if (e.x > canvas.width * 0.9 && e.y < canvas.height * 0.1) console.log('object');
+})
