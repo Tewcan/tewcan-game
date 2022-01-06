@@ -142,8 +142,3 @@ const animate = () => {
 }
 
 animate()
-
-canvas.addEventListener('click', (e) => {
-
-  if (e.x > canvas.width * 0.9 && e.y < canvas.height * 0.1) console.log('object');
-})
